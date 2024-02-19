@@ -16,6 +16,7 @@ services:
 
   redis:
     image: redis
+    container_name: redis
 
   user:
     image: user:2
