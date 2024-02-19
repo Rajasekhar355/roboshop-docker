@@ -1,0 +1,32 @@
+networks:
+  default:
+      external:
+        name: roboshop
+
+services:
+  mongodb:
+    image: mongodb:2
+    container_name: mongodb
+
+  catalogue:
+    image: catalogue:2
+    container_name: catalogue
+    depends_on: 
+      - mongodb
+
+  redis:
+    image: redis
+
+  user:
+    image: user:2
+    container_name: user
+    depends_on:
+      - redis
+      - mongodb
+
+  cart: 
+    image: cart:2
+    container_name: cart
+    depends_on:
+      - redis
+      - catalogue
